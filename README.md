@@ -14,7 +14,7 @@ My background in data entry, analysis, and academic projects has strengthened my
 ---
 
 ## 🎓 Education  
-- **Bachelor of Science in Computer Science** – *Laguna State Polytechnic University* (2024 – Present)  
+- **Bachelor of Science in Computer Science** – *Laguna State Polytechnic University* (2025 – Present)  
 - **Senior High School (STEM)** – *Laguna Senior High School* (2021 – 2023)  
 - **Junior High School** – *Pedro Guevara Memorial National High School* (2017 – 2021)  
 
