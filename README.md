@@ -3,7 +3,7 @@
   <img src="https://capsule-render.vercel.app/api?type=rect&color=0:000000,100:0d47a1&height=100&section=header&text=Keanne%20Rosario&fontSize=40&fontColor=ffffff&animation=fadeIn" alt="banner" />
 </p>
 
-<h2 align="center">📌 Data Encoder | Computer Science Student | Fast Learner</h2>
+<h2 align="center">📌 Computer Science Student | Fast Learner</h2>
 
 ---
 
