@@ -1,91 +1,91 @@
 <picture>
   <source media="(prefers-reduced-motion: reduce)" srcset="./assets/profile-header.png">
-  <img src="./assets/profile-header.gif" alt="Keanne Rosario — Computer Science student. Web experiences, games, and computer vision." width="100%">
+  <img src="./assets/profile-header.gif" alt="Keanne Rosario — a little code, a lot of curiosity. Build, play, explore." width="100%">
 </picture>
 
 <p align="center">
-  <a href="#selected-projects">Selected projects</a> &nbsp;·&nbsp;
-  <a href="#technical-toolkit">Technical toolkit</a> &nbsp;·&nbsp;
-  <a href="https://v-exor.github.io/CSST106_Lab_Compilation/">Vision lab portfolio</a> &nbsp;·&nbsp;
-  <a href="mailto:keannerock@gmail.com">Contact</a>
+  <a href="#highlighted-projects">🚀 Highlighted Projects</a> &nbsp;·&nbsp;
+  <a href="#my-toolbox">⚡ My toolbox</a> &nbsp;·&nbsp;
+  <a href="mailto:keannerock@gmail.com">💬 Say hello</a>
 </p>
 
-I'm **Keanne Jericho M. Rosario**, a **BS Computer Science student at Laguna State Polytechnic University**, based in the Philippines. I build interactive web projects that turn ideas from class into experiences people can explore, use, and play.
+### Hey, I'm Keanne 👋
 
-My work spans browser-based simulations, JavaScript games, and a computer vision laboratory portfolio. I enjoy working through application logic and organizing it into clear, usable interfaces.
+A Computer Science student at **Laguna State Polytechnic University**, based in the Philippines. I like turning things I learn into things you can click, explore, and play.
 
-## Selected projects
+Sometimes that means building a whole desktop in a browser. Sometimes it's a game that turns into *one more round*. Lately, it's been exploring the world of computer vision. 🌌
 
-| Project | Focus | Explore |
-| :--- | :--- | :--- |
-| [RTX-6767-Pro-Max](https://github.com/v-Exor/RTX-6767-Pro-Max) | Desktop UI and operating system concepts | [Live simulator ↗](https://v-exor.github.io/RTX-6767-Pro-Max/) |
-| [GAME_NEWEST](https://github.com/v-Exor/GAME_NEWEST) | Seven browser games and game logic | [Play the games ↗](https://v-exor.github.io/GAME_NEWEST/) |
-| [CSST106_Lab_Compilation](https://github.com/v-Exor/CSST106_Lab_Compilation) | Computer vision laboratory portfolio | [Visit the portfolio ↗](https://v-exor.github.io/CSST106_Lab_Compilation/) |
+## Highlighted Projects
 
-### 01 · RTX-6767-Pro-Max
+🖥️ [Explore a desktop](https://v-exor.github.io/RTX-6767-Pro-Max/) &nbsp;·&nbsp; 🎮 [Play a game](https://v-exor.github.io/GAME_NEWEST/) &nbsp;·&nbsp; 👁️ [Step into the vision lab](https://v-exor.github.io/CSST106_Lab_Compilation/)
+
+### 🖥️ RTX-6767-Pro-Max
 
 <a href="https://v-exor.github.io/RTX-6767-Pro-Max/">
-  <img src="./assets/project-os.png" alt="RTX-6767-Pro-Max — a Windows-inspired desktop simulation built with JavaScript, HTML, and CSS." width="100%">
+  <picture>
+    <source media="(prefers-reduced-motion: reduce)" srcset="./assets/project-os.png">
+    <img src="./assets/project-os.gif" alt="RTX-6767-Pro-Max — a Windows-inspired desktop simulation, with softly glowing blue scheduling bars." width="100%">
+  </picture>
 </a>
 
-A **Windows-inspired operating system simulator** built with vanilla JavaScript, HTML, and CSS. The browser acts as a desktop for exploring operating system concepts.
+**A desktop playground, right in your browser.** Open apps, drag windows around, try the terminal, or see what happens behind the scenes in an operating system.
 
-- **Desktop interactions:** draggable, resizable windows with minimize, maximize, taskbar, and app switching.
-- **OS concepts:** FCFS, Round Robin, and SJF scheduling with Gantt charts; process management, memory allocation, and a printer spooler.
-- **Built-in tools:** a virtual file explorer, terminal, calculator, paint app, and settings.
+- 🪟 A Windows-inspired desktop with resizable windows, a taskbar, and built-in apps.
+- ⚙️ CPU scheduling with FCFS, Round Robin, and SJF, plus process and memory tools.
+- 🛠️ A virtual file explorer, paint app, calculator, terminal, and printer spooler.
 
-**Demonstrates:** state management, scheduling algorithms, modular JavaScript, and interactive UI development.
+`JavaScript` `HTML` `CSS`
 
-[**Explore the simulator ↗**](https://v-exor.github.io/RTX-6767-Pro-Max/) &nbsp;·&nbsp; [View source](https://github.com/v-Exor/RTX-6767-Pro-Max)
+[**Launch the desktop ↗**](https://v-exor.github.io/RTX-6767-Pro-Max/) &nbsp;·&nbsp; [Peek at the code](https://github.com/v-Exor/RTX-6767-Pro-Max)
 
-### 02 · GAME_NEWEST / Mini-Game Hub
+### 🎮 GAME_NEWEST · Mini-Game Hub
 
 <a href="https://v-exor.github.io/GAME_NEWEST/">
-  <img src="./assets/project-games.png" alt="Mini-Game Hub — seven browser games built with JavaScript, HTML, and CSS." width="100%">
+  <picture>
+    <source media="(prefers-reduced-motion: reduce)" srcset="./assets/project-games.png">
+    <img src="./assets/project-games.gif" alt="Mini-Game Hub — seven browser games, with a blue controller and gently fading buttons." width="100%">
+  </picture>
 </a>
 
-A **seven-game browser arcade** with a shared hub: Tic Tac Toe, Memory Match, Connect Four, Jumping Capybara, Snake, Checkers, and Rock, Paper, Scissors.
+**Pick a game. Take a break. Try to beat your best.** Seven mini-games share one home: Tic Tac Toe, Memory Match, Connect Four, Jumping Capybara, Snake, Checkers, and Rock, Paper, Scissors.
 
-- **Game logic:** turn handling, legal moves, win conditions, collision detection, and score tracking across different game types.
-- **Ways to play:** local two-player and computer-opponent modes in selected board games, plus difficulty options in selected games.
-- **Saved progress:** browser local storage keeps best scores for Snake and Jumping Capybara, and best times for Memory Match.
+- 🤖 Challenge a computer opponent or a friend in selected board games.
+- 🧠 Mix things up with difficulty options in selected games.
+- 🏆 Keep your best Snake and Capybara scores, and Memory Match times, in your browser.
 
-**Demonstrates:** event-driven programming, game state, computer-opponent logic, and browser persistence.
+`JavaScript` `HTML` `CSS` `localStorage`
 
-[**Play the games ↗**](https://v-exor.github.io/GAME_NEWEST/) &nbsp;·&nbsp; [View source](https://github.com/v-Exor/GAME_NEWEST)
+[**Let's play ↗**](https://v-exor.github.io/GAME_NEWEST/) &nbsp;·&nbsp; [Peek at the code](https://github.com/v-Exor/GAME_NEWEST)
 
-### 03 · CSST106_Lab_Compilation / Computer Vision Lab
+### 👁️ CSST106_Lab_Compilation · Computer Vision Lab
 
 <a href="https://v-exor.github.io/CSST106_Lab_Compilation/">
-  <img src="./assets/project-vision.png" alt="Computer Vision Lab — a React and TypeScript portfolio connecting seven independently hosted laboratory activities." width="100%">
+  <picture>
+    <source media="(prefers-reduced-motion: reduce)" srcset="./assets/project-vision.png">
+    <img src="./assets/project-vision.gif" alt="Computer Vision Lab — a portal to seven independent laboratory activities, with a smoothly moving blue scanner." width="100%">
+  </picture>
 </a>
 
-A **React and TypeScript compilation website for CSST106 — Computer Vision**, connecting seven independently hosted laboratory activities through one organized portfolio.
+**A place to explore how computers see.** My CSST106 compilation brings seven independently hosted laboratory activities together in one React and TypeScript website.
 
-- **Discover and navigate:** searchable activities, topic filters, grid/list views, and individual laboratory pages with overview, workspace, and resources tabs.
-- **Study areas:** image fundamentals, edge detection, histograms, SURF, PCA, and YOLOv8, with links to the independent laboratory websites.
-- **Delivery and usability:** responsive layouts, keyboard-accessible navigation, reduced-motion support, and a GitHub Actions deployment workflow.
+- 🔎 Search activities, filter by topic, and switch between grid and list views.
+- 🧪 Explore lab links covering images, edges, histograms, SURF, PCA, and YOLOv8.
+- 🧭 Jump into each lab's overview, workspace, and resources from a responsive interface.
 
-**Demonstrates:** component-based development, typed configuration, accessible navigation, and static-site deployment. This repository is the compilation portal; the laboratory applications are hosted separately.
+`React` `TypeScript` `Vite` `Tailwind CSS`
 
-[**Visit the vision lab ↗**](https://v-exor.github.io/CSST106_Lab_Compilation/) &nbsp;·&nbsp; [View source](https://github.com/v-Exor/CSST106_Lab_Compilation)
+[**Explore the vision lab ↗**](https://v-exor.github.io/CSST106_Lab_Compilation/) &nbsp;·&nbsp; [Peek at the code](https://github.com/v-Exor/CSST106_Lab_Compilation)
 
-## Technical toolkit
+<sub>The compilation is the central portal; the laboratory applications live on their own sites.</sub>
 
-| Area | Technologies and practices used in these projects |
-| :--- | :--- |
-| Frontend | JavaScript, TypeScript, HTML, CSS, React |
-| Styling and tooling | Tailwind CSS, Vite, npm |
-| Application logic | DOM events, game loops, browser local storage, shared application state |
-| Delivery | Git, GitHub, GitHub Pages, GitHub Actions |
-| Areas of study | Operating systems, game development, computer vision |
+## My toolbox
 
-## Background & contact
+⚡ **For building:** JavaScript · TypeScript · HTML · CSS · React<br>
+🎨 **For the interface:** Tailwind CSS · Vite<br>
+🚀 **For sharing it:** Git · GitHub · GitHub Pages · GitHub Actions
 
-**Education:** BS Computer Science · Laguna State Polytechnic University<br>
-**Location:** Philippines<br>
-**Email:** [keannerock@gmail.com](mailto:keannerock@gmail.com)
+### Let's connect 💬
 
-Alongside my development projects, I have experience with data entry, research, and organizing information using Microsoft Excel and Access. I bring attention to detail and a willingness to learn to the work I take on.
+Got an idea, a question, or just want to say hi? [Drop me an email](mailto:keannerock@gmail.com) or [explore my repositories](https://github.com/v-Exor?tab=repositories).
 
-<p align="center"><sub>Explore a project, try a demo, or get in touch.</sub></p>
+<p align="center"><sub>Thanks for stopping by. Stay curious, and have fun exploring. ✨</sub></p>
