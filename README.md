@@ -1,6 +1,6 @@
 <picture>
-  <source media="(prefers-reduced-motion: reduce)" srcset="./assets/profile-header.png">
-  <img src="./assets/profile-header.gif" alt="Keanne Jericho M. Rosario — Computer Science student at Laguna State Polytechnic University, Philippines. Web development and computer vision." width="100%">
+  <source media="(prefers-reduced-motion: reduce)" srcset="./assets/profile-header.png?v=ee681c8">
+  <img src="./assets/profile-header.gif?v=ee681c8" alt="Keanne Jericho M. Rosario — Computer Science student at Laguna State Polytechnic University, Philippines. Web development and computer vision." width="100%">
 </picture>
 
 <p align="center">
@@ -24,8 +24,8 @@ I'm **Keanne Jericho M. Rosario**, a Computer Science student at **Laguna State 
 
 <a href="https://v-exor.github.io/Justice_KP_Pages/">
   <picture>
-    <source media="(prefers-reduced-motion: reduce)" srcset="./assets/project-justice.png">
-    <img src="./assets/project-justice.gif" alt="JUSTICE-KP — Experimental Research / Thesis. Transcription-assisted decision support for Katarungang Pambarangay." width="100%">
+    <source media="(prefers-reduced-motion: reduce)" srcset="./assets/project-justice.png?v=ee681c8">
+    <img src="./assets/project-justice.gif?v=ee681c8" alt="JUSTICE-KP — Experimental Research / Thesis. Transcription-assisted decision support for Katarungang Pambarangay." width="100%">
   </picture>
 </a>
 
@@ -47,8 +47,8 @@ Developed during our **experimental research / thesis**, JUSTICE-KP supports hea
 
 <a href="https://github.com/v-Exor/GestureDeck_CV_Project">
   <picture>
-    <source media="(prefers-reduced-motion: reduce)" srcset="./assets/project-gesture.png">
-    <img src="./assets/project-gesture.gif" alt="GestureDeck — Computer Vision. Hand-gesture control for Windows PowerPoint." width="100%">
+    <source media="(prefers-reduced-motion: reduce)" srcset="./assets/project-gesture.png?v=ee681c8">
+    <img src="./assets/project-gesture.gif?v=ee681c8" alt="GestureDeck — Computer Vision. Hand-gesture control for Windows PowerPoint." width="100%">
   </picture>
 </a>
 
@@ -70,8 +70,8 @@ A **CSST 106 Computer Vision** classroom prototype for controlling a Windows Pow
 
 <a href="https://v-exor.github.io/RTX-6767-Pro-Max/">
   <picture>
-    <source media="(prefers-reduced-motion: reduce)" srcset="./assets/project-os.png">
-    <img src="./assets/project-os.gif" alt="RTX-6767-Pro-Max — Web Application. Browser-based desktop and operating-system simulation." width="100%">
+    <source media="(prefers-reduced-motion: reduce)" srcset="./assets/project-os.png?v=ee681c8">
+    <img src="./assets/project-os.gif?v=ee681c8" alt="RTX-6767-Pro-Max — Web Application. Browser-based desktop and operating-system simulation." width="100%">
   </picture>
 </a>
 
@@ -90,8 +90,8 @@ A Windows-inspired desktop simulation with resizable windows, a taskbar, and bui
 
 <a href="https://v-exor.github.io/CSST106_Lab_Compilation/">
   <picture>
-    <source media="(prefers-reduced-motion: reduce)" srcset="./assets/project-vision.png">
-    <img src="./assets/project-vision.gif" alt="Computer Vision Lab — Laboratory Portal. Seven independently hosted CSST106 laboratory activities." width="100%">
+    <source media="(prefers-reduced-motion: reduce)" srcset="./assets/project-vision.png?v=ee681c8">
+    <img src="./assets/project-vision.gif?v=ee681c8" alt="Computer Vision Lab — Laboratory Portal. Seven independently hosted CSST106 laboratory activities." width="100%">
   </picture>
 </a>
 
@@ -110,8 +110,8 @@ A React and TypeScript portal for seven independently hosted **CSST106** laborat
 
 <a href="https://v-exor.github.io/GAME_NEWEST/">
   <picture>
-    <source media="(prefers-reduced-motion: reduce)" srcset="./assets/project-games.png">
-    <img src="./assets/project-games.gif" alt="Mini-Game Hub — Browser Games. Seven JavaScript games with local score storage." width="100%">
+    <source media="(prefers-reduced-motion: reduce)" srcset="./assets/project-games.png?v=ee681c8">
+    <img src="./assets/project-games.gif?v=ee681c8" alt="Mini-Game Hub — Browser Games. Seven JavaScript games with local score storage." width="100%">
   </picture>
 </a>
 
