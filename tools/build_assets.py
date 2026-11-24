@@ -4,6 +4,7 @@ Requires Pillow and NumPy. Text stays still while decorative layers animate.
 from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 import math
+import argparse
 import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -94,6 +95,8 @@ CARDS=[
  ('01','DESKTOP EXPERIMENT','RTX-6767-Pro-Max','A whole desktop. Inside your browser.','JAVASCRIPT  /  HTML  /  CSS','os'),
  ('02','PRESS PLAY','Mini-Game Hub','Seven games. One more round?','JAVASCRIPT  /  GAME LOGIC  /  LOCAL STORAGE','games'),
  ('03','EXPLORE THE VISUAL WORLD','Computer Vision Lab','Seven labs. One place to explore.','REACT  /  TYPESCRIPT  /  VITE  /  TAILWIND CSS','vision'),
+ ('04','EXPERIMENTAL RESEARCH / THESIS','JUSTICE-KP','Hearing transcripts. Clearer case workflows.','NEXT.JS  /  FASTAPI  /  LOCAL TRANSCRIPTION','justice'),
+ ('05','COMPUTER VISION IN MOTION','GestureDeck','Turn your hand. Move your slides.','PYTHON  /  MEDIAPIPE  /  OPENCV','gesture'),
 ]
 
 def card(spec,phase=0):
@@ -129,7 +132,7 @@ def card(spec,phase=0):
             c=blend((30,74,137),(106,233,255),t)
             d.ellipse((x-8,y-8,x+8,y+8),fill=c)
         for x in [1064,1085]:d.rounded_rectangle((x,165,x+11,170),radius=2,fill='#387ac5')
-    else:
+    elif kind=='vision':
         for x in range(966,1215,28):d.line((x,37,x,229),fill='#15385d')
         for y in range(37,230,28):d.line((966,y,1215,y),fill='#15385d')
         d.ellipse((1006,54,1170,218),outline='#4a9fe9',width=2)
@@ -143,11 +146,51 @@ def card(spec,phase=0):
             strength=(1-abs(off)/10)*.65
             d.line((989,scan_y+off,1187,scan_y+off),fill=blend((9,37,70),(72,175,236),strength))
         d.line((989,scan_y,1187,scan_y),fill='#93edff',width=2)
+    elif kind=='justice':
+        # A hearing waveform feeds a reviewable document and workflow.
+        d.rounded_rectangle((1038,40,1186,181),radius=12,fill='#081f3f',outline='#4eabfa',width=2)
+        text(d,(1056,53),'KP / REVIEW',14,'#8edbff','mono')
+        for row,width in enumerate([104,82,94]):
+            d.rounded_rectangle((1056,88+row*20,1056+width,93+row*20),radius=2,fill='#25649f')
+        d.line((971,115,1022,115),fill='#368bd0',width=2)
+        d.line((1015,109,1022,115,1015,121),fill='#74d3ff',width=2)
+        for i in range(9):
+            x=963+i*7
+            height=5+19*(math.sin(phase*TAU-i*.7)+1)/2
+            d.line((x,75-height,x,75+height),fill='#65cbff',width=3)
+        nodes=[(990,210),(1080,210),(1170,210)]
+        d.line(nodes,fill='#25649f',width=2)
+        for i,(x,y) in enumerate(nodes):
+            intensity=(math.cos(phase*TAU-i*TAU/3)+1)/2
+            d.ellipse((x-9,y-9,x+9,y+9),fill=blend((18,61,112),(93,217,255),intensity))
+        d.line((1084,158,1091,165,1107,149),fill='#82e4ff',width=3)
+    elif kind=='gesture':
+        # Stylized hand landmarks and a slideshow; the illustration is decorative.
+        d.rounded_rectangle((1101,57,1225,146),radius=10,fill='#081f3f',outline='#4eabfa',width=2)
+        d.line((1117,82,1208,82),fill='#28639d',width=4)
+        d.line((1117,96,1184,96),fill='#28639d',width=4)
+        d.line((1163,146,1163,164),fill='#4eabfa',width=2)
+        d.line((1145,164,1181,164),fill='#4eabfa',width=2)
+        squeeze=.82+.18*math.cos(phase*TAU)
+        points=[(1013,212),(981,174),(965,156),(953,145),(944,132),
+                (987,134),(984,108),(983,86),(982,65),
+                (1007,128),(1006,94),(1006,67),(1006,45),
+                (1027,132),(1030,102),(1032,79),(1034,60),
+                (1044,143),(1054,120),(1063,103),(1071,88)]
+        points=[(1013+(x-1013)*squeeze,y) for x,y in points]
+        chains=[(0,1,2,3,4),(0,5,6,7,8),(5,9,10,11,12),
+                (9,13,14,15,16),(13,17,18,19,20),(0,17),(5,9,13,17)]
+        for chain in chains:d.line([points[i] for i in chain],fill='#3e9ae0',width=2)
+        for x,y in points:d.ellipse((x-3,y-3,x+3,y+3),fill='#92e7ff')
+        for direction,x in [(-1,1127),(1,1198)]:
+            c=blend((38,105,169),(135,230,255),(math.sin(phase*TAU+direction)+1)/2)
+            d.line((x-direction*10,192,x+direction*10,192),fill=c,width=3)
+            d.line((x+direction*3,185,x+direction*10,192,x+direction*3,199),fill=c,width=3)
     d.line((0,259,1279,259),fill='#1b4b7b')
     return im
 
 # One shared palette prevents color flicker across GIF frames.
-preview=Image.new('RGB',(1280,400+260*3))
+preview=Image.new('RGB',(1280,400+260*len(CARDS)))
 preview.paste(header(),(0,0))
 for i,spec in enumerate(CARDS):preview.paste(card(spec,.35),(0,400+i*260))
 palette=preview.quantize(colors=256,method=Image.Quantize.MEDIANCUT)
@@ -160,6 +203,14 @@ def save_loop(name,render,count=100,duration=60):
     frames[0].save(ASSETS/(name+'.gif'),save_all=True,append_images=frames[1:],duration=duration,loop=0,optimize=True,disposal=1)
     print(name, (ASSETS/(name+'.gif')).stat().st_size,flush=True)
 
-save_loop('profile-header',header,120,50)
-for spec in CARDS:
-    save_loop('project-'+spec[-1],lambda phase,spec=spec:card(spec,phase))
+if __name__ == '__main__':
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--only',nargs='+',choices=['profile-header']+['project-'+s[-1] for s in CARDS],
+                        help='Build selected assets; omit to rebuild everything.')
+    selected=parser.parse_args().only
+    if selected is None or 'profile-header' in selected:
+        save_loop('profile-header',header,120,50)
+    for spec in CARDS:
+        name='project-'+spec[-1]
+        if selected is None or name in selected:
+            save_loop(name,lambda phase,spec=spec:card(spec,phase))

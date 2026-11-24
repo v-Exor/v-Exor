@@ -19,6 +19,8 @@ Sometimes that means building a whole desktop in a browser. Sometimes it's a gam
 
 🖥️ [Explore a desktop](https://v-exor.github.io/RTX-6767-Pro-Max/) &nbsp;·&nbsp; 🎮 [Play a game](https://v-exor.github.io/GAME_NEWEST/) &nbsp;·&nbsp; 👁️ [Step into the vision lab](https://v-exor.github.io/CSST106_Lab_Compilation/)
 
+⚖️ [Explore my thesis project](#justice-kp) &nbsp;·&nbsp; ✋ [Meet GestureDeck](#gesturedeck)
+
 ### 🖥️ RTX-6767-Pro-Max
 
 <a href="https://v-exor.github.io/RTX-6767-Pro-Max/">
@@ -77,6 +79,52 @@ Sometimes that means building a whole desktop in a browser. Sometimes it's a gam
 [**Explore the vision lab ↗**](https://v-exor.github.io/CSST106_Lab_Compilation/) &nbsp;·&nbsp; [Peek at the code](https://github.com/v-Exor/CSST106_Lab_Compilation)
 
 <sub>The compilation is the central portal; the laboratory applications live on their own sites.</sub>
+
+<a id="justice-kp"></a>
+
+### ⚖️ JUSTICE-KP · Experimental Research / Thesis
+
+<a href="https://v-exor.github.io/Justice_KP_Pages/">
+  <picture>
+    <source media="(prefers-reduced-motion: reduce)" srcset="./assets/project-justice.png">
+    <img src="./assets/project-justice.gif" alt="JUSTICE-KP — my experimental research and thesis project, with an animated hearing-to-review workflow." width="100%">
+  </picture>
+</a>
+
+**From hearing transcripts to a clearer case workflow.** Developed during our experimental research / thesis, JUSTICE-KP is a transcription-assisted, rule-based decision-support prototype for **Katarungang Pambarangay**.
+
+- 🎙️ Record hearings, transcribe speech locally, identify speakers, and review editable transcripts.
+- 🧭 Support case analysis, jurisdiction checks, and sensitive-case referral routing with explainable rule traces.
+- 📋 Bring hearing schedules, evidence, KP form workflows, and thesis validation tools into one system.
+
+`Next.js` `TypeScript` `Tailwind CSS` `Python` `FastAPI` `faster-whisper`
+
+[**Explore the research showcase ↗**](https://v-exor.github.io/Justice_KP_Pages/) &nbsp;·&nbsp; [System source](https://github.com/v-Exor/JUSTICE-KP-System) &nbsp;·&nbsp; [Showcase source](https://github.com/v-Exor/Justice_KP_Pages)
+
+<sub>The showcase presents the research; it is separate from the system application. Final decisions remain with barangay officials.</sub>
+
+<a id="gesturedeck"></a>
+
+### ✋ GestureDeck · Hand-Gesture Slide Control
+
+<a href="https://github.com/v-Exor/GestureDeck_CV_Project">
+  <picture>
+    <source media="(prefers-reduced-motion: reduce)" srcset="./assets/project-gesture.png">
+    <img src="./assets/project-gesture.gif" alt="GestureDeck — a computer vision classroom prototype for PowerPoint control, with animated hand landmarks and slide navigation." width="100%">
+  </picture>
+</a>
+
+**Turn your hand. Move your slides.** GestureDeck is a **CSST 106 Computer Vision** classroom prototype that uses a webcam, MediaPipe, and local geometric and temporal rules to control a Windows PowerPoint slideshow.
+
+- ✋ Turn an open right hand from palm to back for the next slide, or back to palm for the previous slide.
+- ✊ Hold a fist to pause or resume control; hold a Victory pose to exit the slideshow.
+- 🔎 See detected hand joints and recognition feedback, with optional local recording for review.
+
+`Python` `MediaPipe` `OpenCV` `Computer Vision` `Windows PowerPoint`
+
+[**Explore GestureDeck ↗**](https://github.com/v-Exor/GestureDeck_CV_Project) &nbsp;·&nbsp; [Setup & gesture guide](https://github.com/v-Exor/GestureDeck_CV_Project#gesture-controls)
+
+<sub>A local Windows demonstration prototype. Fast turns can miss commands; the inspected trials do not establish general recognition accuracy.</sub>
 
 ## My toolbox
 
