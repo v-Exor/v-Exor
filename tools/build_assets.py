@@ -200,7 +200,20 @@ preview.save(ROOT.parent/'design-preview-blue.png')
 def save_loop(name,render,count=72,duration=90):
     still=render(0)
     still.save(ASSETS/(name+'.png'),optimize=True)
-    frames=[render(i/count).quantize(palette=palette,dither=Image.Dither.FLOYDSTEINBERG) for i in range(count)]
+    frame_palette=palette
+    if name=='profile-header':
+        # Reserve half the GIF palette for the portrait's natural skin tones.
+        photo_colors=PORTRAIT.quantize(colors=128,method=Image.Quantize.MEDIANCUT).getpalette()[:384]
+        blue_colors=BASE_HEADER.quantize(colors=96,method=Image.Quantize.MEDIANCUT).getpalette()[:288]
+        ui_hex=['edf7ff','d4edff','d5e9fc','76a5d4','9fc5ed','7abfff','adcfee','b2cce7',
+                '7c9fbe','8cbae4','63aeec','a3dcff','103569','397cbd','1b385c','24466f',
+                '0b2547','285d94','2a5d94','ffffff','d7e2ef','b8c8da','8a9bad','526880',
+                '18324f','233e5e','325276','41668e','6f96ba','9dbbd8','c5dcee','e1eff9']
+        ui_colors=[int(color[i:i+2],16) for color in ui_hex for i in (0,2,4)]
+        frame_palette=Image.new('P',(1,1))
+        frame_palette.putpalette(photo_colors+blue_colors+ui_colors)
+    dithering=Image.Dither.NONE if name=='profile-header' else Image.Dither.FLOYDSTEINBERG
+    frames=[render(i/count).quantize(palette=frame_palette,dither=dithering) for i in range(count)]
     frames[0].save(ASSETS/(name+'.gif'),save_all=True,append_images=frames[1:],duration=duration,loop=0,optimize=True,disposal=1)
     print(name, (ASSETS/(name+'.gif')).stat().st_size,flush=True)
 
