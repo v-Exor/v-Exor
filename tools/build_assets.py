@@ -2,7 +2,7 @@
 Requires Pillow and NumPy. Text stays still while decorative layers animate.
 """
 from pathlib import Path
-from PIL import Image, ImageDraw, ImageFont, ImageFilter
+from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageOps
 import math
 import argparse
 import numpy as np
@@ -30,7 +30,11 @@ def background(h, hero=False):
     rgb=np.stack([5+glow*7+glow2*1,10+glow*49+glow2*10,20+glow*121+glow2*28],axis=-1)
     return Image.fromarray(np.uint8(np.clip(rgb,0,255)))
 
-BASE_HEADER=background(400,True)
+HEADER_HEIGHT=540
+BASE_HEADER=background(HEADER_HEIGHT,True)
+PORTRAIT=ImageOps.fit(Image.open(ASSETS/'profile-portrait.png').convert('RGB'),(310,310),method=Image.Resampling.LANCZOS)
+PORTRAIT_MASK=Image.new('L',(310,310))
+ImageDraw.Draw(PORTRAIT_MASK).ellipse((0,0,309,309),fill=255)
 BASE_CARD=background(260)
 
 def ambient(im, phase, center, radius=130):
@@ -50,53 +54,50 @@ def glow_lines(im,draw_fn):
     return Image.alpha_composite(im,layer).convert('RGB')
 
 def header(phase=0):
-    im=ambient(BASE_HEADER,phase,(1082,194),145)
+    im=ambient(BASE_HEADER,phase,(1050,270),200)
     d=ImageDraw.Draw(im)
-    for i in range(3):
+    # Fine flowing lines stay behind the portrait and clear of the name.
+    for i in range(25):
         points=[]
-        for x in range(730,1281,4):
-            y=195+i*35+math.sin((x-730)/190+phase*TAU+i*.8)*(49+i*11)
+        for x in range(770,W+1,5):
+            y=50+i*9+math.sin((x-770)/185+phase*TAU)*35+(x-770)*.25
             points.append((x,y))
-        d.line(points,fill=[(14,61,119),(17,83,165),(21,121,204)][i],width=2)
-    cx,cy=1081,184
-    for r in [69,112,157]:
-        d.ellipse((cx-r,cy-r,cx+r,cy+r),outline='#19467b',width=1)
-    for j in range(20):
-        angle=j*TAU/20+phase*TAU
-        strength=((j+1)/20)**2
-        x,y=cx+math.cos(angle)*157,cy+math.sin(angle)*157
-        color=blend((15,49,93),(96,221,255),strength)
-        rr=2 if j<18 else 4
-        d.ellipse((x-rr,y-rr,x+rr,y+rr),fill=color)
-    for j in range(8):
-        x=780+(j*137)%470
-        y=30+(j*83)%310
-        fade=(math.sin(phase*TAU+j*.9)+1)/2
-        c=blend((13,37,70),(81,181,255),fade*.7)
-        d.ellipse((x,y,x+2,y+2),fill=c)
-    pulse=(math.sin(phase*TAU)+1)/2
-    d.rounded_rectangle((1036,139,1126,229),radius=25,fill='#081d38',outline=blend((37,115,220),(111,219,255),pulse),width=2)
-    text(d,(1051,152),'</>',31,'#a4e9ff','mono')
-    d.rounded_rectangle((52,32,346,68),radius=18,fill='#0a2647',outline='#1a5891')
-    d.ellipse((68,45,76,53),fill='#55d8ff')
-    text(d,(89,39),'v-Exor / hello, world',15,'#9adaff','mono')
-    text(d,(47,103),'Keanne Rosario',70,weight='bold')
-    text(d,(52,204),'A little code. A lot of curiosity.',29,'#b8d8f4','light')
-    text(d,(52,250),'Web experiments, games & computer vision.',21,'#83b3dc')
-    x=52
-    for label,width in [('BUILD',104),('PLAY',94),('EXPLORE',133)]:
-        d.rounded_rectangle((x,316,x+width,351),radius=17,fill='#0a2444',outline='#19558a')
-        text(d,(x+20,323),label,15,'#88d9ff','mono')
-        x+=width+12
-    d.line((0,398,1279,398),fill='#1b4b7b',width=2)
+        d.line(points,fill=blend((12,31,62),(28,86,157),i/32),width=1)
+    for i in range(11):
+        points=[(x,505+i*9+math.sin(x/210+phase*TAU)*15) for x in range(0,760,5)]
+        d.line(points,fill=(12,34+i,66+i*2),width=1)
+    d.rounded_rectangle((60,36,103,79),radius=12,fill='#103569',outline='#397cbd')
+    text(d,(68,44),'KR',18,'#d4edff','bold')
+    text(d,(119,39),'KEANNE ROSARIO',17,'#d5e9fc','bold')
+    text(d,(120,63),'DEVELOPMENT PORTFOLIO',11,'#76a5d4','mono')
+    text(d,(1020,48),'v-Exor / PH',15,'#9fc5ed','mono')
+    d.line((60,103,1220,103),fill='#1b385c')
+    text(d,(61,148),'COMPUTER SCIENCE STUDENT',16,'#7abfff','mono')
+    text(d,(56,185),'Keanne Jericho',64,weight='bold')
+    text(d,(56,259),'M. Rosario',64,weight='bold')
+    text(d,(61,357),'Web Development & Computer Vision',25,'#adcfee')
+    d.line((61,425,695,425),fill='#24466f')
+    text(d,(61,447),'LAGUNA STATE POLYTECHNIC UNIVERSITY',15,'#b2cce7','mono')
+    text(d,(61,475),'Philippines',17,'#7c9fbe')
+    cx,cy=1030,292
+    d.ellipse((cx-166,cy-166,cx+166,cy+166),fill='#0b2547',outline='#285d94',width=1)
+    im.paste(PORTRAIT,(cx-155,cy-155),PORTRAIT_MASK)
+    d=ImageDraw.Draw(im)
+    d.ellipse((cx-156,cy-156,cx+156,cy+156),outline='#63aeec',width=2)
+    # A slow highlight follows the portrait frame; the photo and text stay still.
+    angle=phase*TAU-math.pi/2
+    x,y=cx+166*math.cos(angle),cy+166*math.sin(angle)
+    d.ellipse((x-3,y-3,x+3,y+3),fill='#a3dcff')
+    text(d,(926,480),'WEB  /  VISION',15,'#8cbae4','mono')
+    d.line((0,HEADER_HEIGHT-1,W-1,HEADER_HEIGHT-1),fill='#2a5d94',width=2)
     return im
 
 CARDS=[
- ('01','DESKTOP EXPERIMENT','RTX-6767-Pro-Max','A whole desktop. Inside your browser.','JAVASCRIPT  /  HTML  /  CSS','os'),
- ('02','PRESS PLAY','Mini-Game Hub','Seven games. One more round?','JAVASCRIPT  /  GAME LOGIC  /  LOCAL STORAGE','games'),
- ('03','EXPLORE THE VISUAL WORLD','Computer Vision Lab','Seven labs. One place to explore.','REACT  /  TYPESCRIPT  /  VITE  /  TAILWIND CSS','vision'),
- ('04','EXPERIMENTAL RESEARCH / THESIS','JUSTICE-KP','Hearing transcripts. Clearer case workflows.','NEXT.JS  /  FASTAPI  /  LOCAL TRANSCRIPTION','justice'),
- ('05','COMPUTER VISION IN MOTION','GestureDeck','Turn your hand. Move your slides.','PYTHON  /  MEDIAPIPE  /  OPENCV','gesture'),
+ ('01','EXPERIMENTAL RESEARCH / THESIS','JUSTICE-KP','Transcription-assisted decision support.','NEXT.JS  /  FASTAPI  /  LOCAL TRANSCRIPTION','justice'),
+ ('02','COMPUTER VISION','GestureDeck','Hand-gesture control for PowerPoint.','PYTHON  /  MEDIAPIPE  /  OPENCV','gesture'),
+ ('03','WEB APPLICATION','RTX-6767-Pro-Max','Browser-based desktop & OS simulation.','JAVASCRIPT  /  HTML  /  CSS','os'),
+ ('04','LABORATORY PORTAL','Computer Vision Lab','Seven CSST106 laboratory activities.','REACT  /  TYPESCRIPT  /  VITE  /  TAILWIND CSS','vision'),
+ ('05','BROWSER GAMES','Mini-Game Hub','Seven games with local score storage.','JAVASCRIPT  /  GAME LOGIC  /  LOCAL STORAGE','games'),
 ]
 
 def card(spec,phase=0):
@@ -190,13 +191,13 @@ def card(spec,phase=0):
     return im
 
 # One shared palette prevents color flicker across GIF frames.
-preview=Image.new('RGB',(1280,400+260*len(CARDS)))
+preview=Image.new('RGB',(W,HEADER_HEIGHT+260*len(CARDS)))
 preview.paste(header(),(0,0))
-for i,spec in enumerate(CARDS):preview.paste(card(spec,.35),(0,400+i*260))
+for i,spec in enumerate(CARDS):preview.paste(card(spec,.35),(0,HEADER_HEIGHT+i*260))
 palette=preview.quantize(colors=256,method=Image.Quantize.MEDIANCUT)
 preview.save(ROOT.parent/'design-preview-blue.png')
 
-def save_loop(name,render,count=100,duration=60):
+def save_loop(name,render,count=72,duration=90):
     still=render(0)
     still.save(ASSETS/(name+'.png'),optimize=True)
     frames=[render(i/count).quantize(palette=palette,dither=Image.Dither.FLOYDSTEINBERG) for i in range(count)]
@@ -209,7 +210,7 @@ if __name__ == '__main__':
                         help='Build selected assets; omit to rebuild everything.')
     selected=parser.parse_args().only
     if selected is None or 'profile-header' in selected:
-        save_loop('profile-header',header,120,50)
+        save_loop('profile-header',header)
     for spec in CARDS:
         name='project-'+spec[-1]
         if selected is None or name in selected:
