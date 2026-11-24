@@ -201,7 +201,7 @@ def save_loop(name,render,count=72,duration=90):
     still=render(0)
     still.save(ASSETS/(name+'.png'),optimize=True)
     frame_palette=palette
-    if name=='profile-header':
+    if name=='portfolio-header':
         # Reserve half the GIF palette for the portrait's natural skin tones.
         photo_colors=PORTRAIT.quantize(colors=128,method=Image.Quantize.MEDIANCUT).getpalette()[:384]
         blue_colors=BASE_HEADER.quantize(colors=96,method=Image.Quantize.MEDIANCUT).getpalette()[:288]
@@ -212,19 +212,19 @@ def save_loop(name,render,count=72,duration=90):
         ui_colors=[int(color[i:i+2],16) for color in ui_hex for i in (0,2,4)]
         frame_palette=Image.new('P',(1,1))
         frame_palette.putpalette(photo_colors+blue_colors+ui_colors)
-    dithering=Image.Dither.NONE if name=='profile-header' else Image.Dither.FLOYDSTEINBERG
+    dithering=Image.Dither.NONE if name=='portfolio-header' else Image.Dither.FLOYDSTEINBERG
     frames=[render(i/count).quantize(palette=frame_palette,dither=dithering) for i in range(count)]
     frames[0].save(ASSETS/(name+'.gif'),save_all=True,append_images=frames[1:],duration=duration,loop=0,optimize=True,disposal=1)
     print(name, (ASSETS/(name+'.gif')).stat().st_size,flush=True)
 
 if __name__ == '__main__':
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--only',nargs='+',choices=['profile-header']+['project-'+s[-1] for s in CARDS],
+    parser.add_argument('--only',nargs='+',choices=['portfolio-header']+['portfolio-'+s[-1] for s in CARDS],
                         help='Build selected assets; omit to rebuild everything.')
     selected=parser.parse_args().only
-    if selected is None or 'profile-header' in selected:
-        save_loop('profile-header',header)
+    if selected is None or 'portfolio-header' in selected:
+        save_loop('portfolio-header',header)
     for spec in CARDS:
-        name='project-'+spec[-1]
+        name='portfolio-'+spec[-1]
         if selected is None or name in selected:
             save_loop(name,lambda phase,spec=spec:card(spec,phase))
